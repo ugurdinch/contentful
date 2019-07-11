@@ -1,0 +1,37 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="text-center mt-3">
+  <h1 class="display-4">Contentful</h1>
+  <h4 class="text-muted font-weight-light">This is a simple demo integrating Contentful into Angular 8.</h4>
+
+  <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
+    <label class="btn btn-primary active" (click)="locale = 'en-CA'">
+      <input type="radio" name="options" id="option1" autocomplete="off" checked> English
+    </label>
+    <label class="btn btn-primary" (click)="locale = 'fr-CA'">
+      <input type="radio" name="options" id="option2" autocomplete="off"> French
+    </label>
+  </div>
+
+  <div>
+    <button class="btn btn-primary mt-2" (click)="getDriverLicence(locale)">Get content</button>
+  </div>
+
+  <hr>
+
+  <h4>{{driverLicence?.fields.title}}</h4>
+  <h6 class="text-muted">{{driverLicence?.fields.description}}</h6>
+
+  <div *ngIf="driverLicenceProvinces" class="pt-1 pl-5 pr-5">
+    <ngb-tabset>
+      <ngb-tab *ngFor="let province of driverLicenceProvinces" [title]="province.fields.title">
+        <ng-template ngbTabContent>
+          <p>{{province.fields.description}}</p>
+          <p>{{province.fields.paragraph1}}</p>
+          <p>{{province.fields.paragraph2}}</p>
+          <a [href]="province.fields.link" target="_blank">{{province.fields.link}}</a>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+
+</div>
